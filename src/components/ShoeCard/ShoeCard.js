@@ -68,7 +68,7 @@ const Link = styled.a`
 `;
 
 const Wrapper = styled.article`
-  max-width: 340px;
+ 
   border-radius: 16px 16px 4px 4px;
 
   
