@@ -31,10 +31,20 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  let variantText = '';
+  if(variant == 'on-sale') {
+    variantText = 'On Sale';
+  } else if(variant == 'new-release') {
+    variantText = 'New Release';
+  }
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
+          <Variant className={variant}>{
+            variantText
+            }</Variant>
           <Image alt="" src={imageSrc} />
         </ImageWrapper>
         <Spacer size={12} />
@@ -53,11 +63,15 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+
+ 
 `;
 
 const Wrapper = styled.article`
   max-width: 340px;
   border-radius: 16px 16px 4px 4px;
+
+  
 
 `;
 
@@ -91,6 +105,27 @@ const ColorInfo = styled.p`
 const SalePrice = styled.span`
   font-weight: ${WEIGHTS.medium};
   color: ${COLORS.primary};
+`;
+
+
+const Variant = styled.span`
+  position: absolute;
+  top:5px;
+  right: -5px;
+  border-radius: 2px;
+  color: #fff;
+  padding: 2px 10px;
+  font-weight: 700;
+  font-size: (14/16)rem;
+
+  &.on-sale {
+    background-color: ${COLORS.primary}
+  }
+
+  &.new-release {
+    background-color: ${COLORS.secondary}
+  }
+
 `;
 
 export default ShoeCard;
