@@ -50,10 +50,16 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price style={{
+            '--color': salePrice ? COLORS.gray[700]: undefined,
+            '--textStyle': salePrice ? 'line-through': undefined
+        
+        }}>{formatPrice(price)}</Price>
+
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          { salePrice ? <SalePrice>{formatPrice(salePrice)}</SalePrice> : undefined}
         </Row>
       </Wrapper>
     </Link>
@@ -96,7 +102,10 @@ const Name = styled.h3`
   color: ${COLORS.gray[900]};
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  color: var(--color);
+  text-decoration: var(--textStyle);
+`;
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};
